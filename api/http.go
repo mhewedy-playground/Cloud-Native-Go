@@ -5,30 +5,30 @@ import (
 	"strings"
 )
 
-func HandleBooks(resp http.ResponseWriter, req *http.Request) {
+func HandleBooks(w http.ResponseWriter, r *http.Request) {
 
-	switch req.Method {
+	switch r.Method {
 	case http.MethodGet:
-		listBooks(resp)
+		listBooks(w)
 	case http.MethodPost:
-		addBook(req, resp)
+		addBook(r, w)
 	default:
-		unsupportedHttpMethod(resp)
+		unsupportedHttpMethod(w)
 	}
 }
 
-func HandleBook(resp http.ResponseWriter, req *http.Request) {
-	isbn := strings.TrimPrefix(req.URL.Path, "/api/book/")
+func HandleBook(w http.ResponseWriter, r *http.Request) {
+	isbn := strings.TrimPrefix(r.URL.Path, "/api/book/")
 
-	switch req.Method {
+	switch r.Method {
 	case http.MethodGet:
-		getBook(isbn, resp)
+		getBook(isbn, w)
 	case http.MethodPut:
-		updateBook(isbn, resp)
+		updateBook(isbn, w)
 	case http.MethodDelete:
-		deleteBook(isbn, resp)
+		deleteBook(isbn, w)
 	default:
-		unsupportedHttpMethod(resp)
+		unsupportedHttpMethod(w)
 	}
 }
 
