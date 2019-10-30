@@ -11,7 +11,7 @@ func HandleBooks(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 		listBooks(w)
 	case http.MethodPost:
-		addBook(r, w)
+		addBook(w, r)
 	default:
 		unsupportedHttpMethod(w)
 	}
@@ -24,7 +24,7 @@ func HandleBook(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 		getBook(isbn, w)
 	case http.MethodPut:
-		updateBook(isbn, w)
+		updateBook(isbn, w, r)
 	case http.MethodDelete:
 		deleteBook(isbn, w)
 	default:
