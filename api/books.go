@@ -35,7 +35,7 @@ func addBook(w http.ResponseWriter, r *http.Request) {
 
 func listBooks(w http.ResponseWriter) {
 
-	var books []*Book
+	books := make([]*Book, 0)
 
 	for _, book := range booksDb {
 		books = append(books, book)
